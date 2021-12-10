@@ -82,10 +82,32 @@ async function doSomethingWithExplicitTypesIn45(): Promise<[number, number]> {
 //Works in 4.5 not in 4.4
 async function doSomethingWithImplicitTypes(): Promise<[number, number]> {
   const promiseAllResult =  Promise.all([MaybePromise(100), MaybePromise(200)]);
-  //const result1:[MaybePromiseType<number>, MaybePromiseType<number>] = await promiseAllResult
-  //const result2:[number, number] = await promiseAllResult
-  //const result3:[Promise<number>, Promise<number>] = await promiseAllResult
   const result: Awaited<[number,number]> = await promiseAllResult
+  return result;
+}
+
+//Works in 4.5 not in 4.4
+async function doSomethingWithImplicitTypesAllSettled(): Promise<[PromiseFulfilledResult<number> | PromiseRejectedResult, PromiseFulfilledResult<number> | PromiseRejectedResult]> {
+  const promiseAllSettledResult =  Promise.allSettled([MaybePromise(100), MaybePromise(200)]);
+  /**
+   * Type '[PromiseSettledResult<number | Promise<100> | PromiseLike<100>>, PromiseSettledResult<number | Promise<200> | PromiseLike<200>>]' is not assignable to type '[PromiseFulfilledResult<number> | PromiseRejectedResult, PromiseFulfilledResult<number> | PromiseRejectedResult]'.
+  Type at position 0 in source is not compatible with type at position 0 in target.
+    Type 'PromiseSettledResult<number | Promise<100> | PromiseLike<100>>' is not assignable to type 'PromiseFulfilledResult<number> | PromiseRejectedResult'.
+      Type 'PromiseFulfilledResult<number | Promise<100> | PromiseLike<100>>' is not assignable to type 'PromiseFulfilledResult<number> | PromiseRejectedResult'.
+        Type 'PromiseFulfilledResult<number | Promise<100> | PromiseLike<100>>' is not assignable to type 'PromiseFulfilledResult<number>'.
+          Type 'number | Promise<100> | PromiseLike<100>' is not assignable to type 'number'.
+            Type 'Promise<100>' is not assignable to type 'number'.
+   * 
+   */
+  const result = await promiseAllSettledResult
+  return result;
+}
+
+
+//Works in 4.5 not in 4.4
+async function doSomethingWithImplicitTypesAwaitedAllSettled(): Promise<[PromiseFulfilledResult<number> | PromiseRejectedResult, PromiseFulfilledResult<number> | PromiseRejectedResult]> {
+  const promiseAllSettledResult =  Promise.allSettled([MaybePromise(100), MaybePromise(200)]);
+  const result: Awaited<[PromiseFulfilledResult<number> | PromiseRejectedResult, PromiseFulfilledResult<number>| PromiseRejectedResult]> = await promiseAllSettledResult
   return result;
 }
 
