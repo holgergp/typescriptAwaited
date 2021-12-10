@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,intellij,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,intellij,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,node
+# Edit at https://www.toptal.com/developers/gitignore?templates=intellij,visualstudiocode,node
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -257,4 +257,4 @@ dist
 # Support for Project snippet scope
 !.vscode/*.code-snippets
 
-# End of https://www.toptal.com/developers/gitignore/api/node,intellij,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,node
