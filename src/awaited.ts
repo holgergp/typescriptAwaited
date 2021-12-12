@@ -8,12 +8,14 @@ async function comparePromises() {
   let b: Promise<Promise<string>>;
   let c: Promise<Promise<Promise<string>>>;
   let d: Awaited<typeof c>
+  let e : string
   // error always returns false
   // This condition will always return 'false' since the types 'Promise<string>' and 'Promise<Promise<string>>' have no overlap.ts(2367)
   a===b
   // error always returns false
   // This condition will always return 'false' since the types 'Promise<Promise<string>>' and 'Promise<Promise<Promise<string>>>' have no overlap.ts(2367)
   b===c
+  e===d
   const awaitA = await a
   const awaitB = await b
   const awaitC = await c
